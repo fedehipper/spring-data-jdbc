@@ -2,7 +2,6 @@ package com.demo.jdbc.controller.rest;
 
 import com.demo.jdbc.domain.Customer;
 import com.demo.jdbc.repository.CustomerRepository;
-import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +17,7 @@ public class CustomerRestController {
     }
 
     @GetMapping("/api/customer")
-    public List<Customer> buscarTodos() {
+    public Iterable<Customer> buscarTodos() {
         return customerRepository.findAll();
     }
 
