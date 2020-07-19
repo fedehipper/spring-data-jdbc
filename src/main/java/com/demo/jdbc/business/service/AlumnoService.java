@@ -1,6 +1,7 @@
 package com.demo.jdbc.business.service;
 
 import com.demo.jdbc.domain.Alumno;
+import com.demo.jdbc.domain.Curso;
 import com.demo.jdbc.repository.AlumnoRepository;
 import java.util.Set;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,19 @@ public class AlumnoService {
 
     public Set<Alumno> buscarTodos() {
         return alumnoRepository.findAll();
+    }
+
+    public Alumno inscribirACurso(Long alumnoId, Long materiaId, String codigoCurso) {
+        Alumno alumnoAInscribir = buscarPorId(alumnoId);
+
+        Curso curso = new Curso();
+        curso.setCodigo(codigoCurso);
+        curso.setMateriaId(materiaId);
+
+        alumnoAInscribir.getCursos().add(curso);
+
+        return alumnoRepository.save(alumnoAInscribir);
+
     }
 
 }

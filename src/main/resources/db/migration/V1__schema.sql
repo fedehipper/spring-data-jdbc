@@ -14,6 +14,7 @@ CREATE TABLE alumno(
 
 CREATE TABLE curso (
     id BIGSERIAL PRIMARY KEY,
+    codigo VARCHAR,
     alumno_id BIGINT,
     materia_id BIGINT,
     FOREIGN KEY (materia_id) REFERENCES materia(id),
