@@ -5,6 +5,7 @@ import com.demo.jdbc.domain.Curso;
 import com.demo.jdbc.domain.Materia;
 import com.demo.jdbc.repository.AlumnoRepository;
 import java.util.Set;
+import static java.util.stream.Collectors.toSet;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -53,6 +54,25 @@ public class AlumnoService {
         alumno.getCursos().add(curso);
 
         return alumno;
+    }
+
+    public Alumno desInscribirAlumno(Long alumnoId, String codigo, String codigoCurso) {
+        Alumno alumnoADesInscribir = buscarPorId(alumnoId);
+
+        Set<Curso> cursosActualizados = actualizarCursos(alumnoADesInscribir, codigoCurso);
+
+        alumnoADesInscribir.setCursos(cursosActualizados);
+
+        return alumnoRepository.save(alumnoADesInscribir);
+
+    }
+
+    private Set<Curso> actualizarCursos(Alumno alumno, String codigoCurso) {
+        return alumno
+                .getCursos()
+                .stream()
+                .filter(curso -> !codigoCurso.equals(curso.getCodigo()))
+                .collect(toSet());
     }
 
 }

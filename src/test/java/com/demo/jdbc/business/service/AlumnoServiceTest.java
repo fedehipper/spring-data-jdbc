@@ -181,7 +181,32 @@ public class AlumnoServiceTest extends JdbcApplicationTests {
         assertThatThrownBy(() -> alumnoService.inscribirACurso(alumnoId, codigoMateriaNoExiste, codigoCurso))
                 .isInstanceOf(NoSuchElementException.class);
     }
-    
-    
+
+    @Test
+    public void desInscribirAlumno_alumnoExiste_seEliminaLaRelacionCursoEntreMateriaYAlumno() {
+
+        Alumno alumno = new Alumno();
+        alumno.setApellidoYNombre("Hipperdinger Federico");
+        alumno.setFechaNacimiento(LocalDate.of(1992, 2, 28));
+        alumno.setRegional("Buenos Aires");
+
+        Long alumnoId = alumnoRepository.save(alumno).getId();
+
+        Materia materia = new Materia();
+        materia.setEspecialidad("K");
+        materia.setCodigo("85-1347");
+        materia.setNombre("Algoritmos y Estructura de Datos");
+
+        materiaRepository.save(materia);
+
+        String codigoCurso = "K1045";
+
+        alumnoService.inscribirACurso(alumnoId, materia.getCodigo(), codigoCurso);
+
+        Alumno alumnoDesInscripto = alumnoService.desInscribirAlumno(alumnoId, materia.getCodigo(), codigoCurso);
+
+        assertThat(alumnoDesInscripto.getCursos()).isEmpty();
+
+    }
 
 }
