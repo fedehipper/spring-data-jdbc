@@ -2,6 +2,7 @@ package com.demo.jdbc.business.service;
 
 import com.demo.jdbc.domain.Alumno;
 import com.demo.jdbc.repository.AlumnoRepository;
+import java.util.Set;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,11 +19,16 @@ public class AlumnoService {
     }
 
     public void darDeBaja(Long alumnoId) {
-        alumnoRepository.deleteById(alumnoId);
+        Alumno alumnoADarDeBaja = buscarPorId(alumnoId);
+        alumnoRepository.deleteById(alumnoADarDeBaja.getId());
     }
 
     public Alumno buscarPorId(Long alumnoId) {
         return alumnoRepository.findById(alumnoId).get();
+    }
+
+    public Set<Alumno> buscarTodos() {
+        return alumnoRepository.findAll();
     }
 
 }
