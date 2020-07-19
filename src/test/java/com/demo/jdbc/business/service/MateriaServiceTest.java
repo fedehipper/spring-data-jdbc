@@ -1,7 +1,6 @@
 package com.demo.jdbc.business.service;
 
 import com.demo.jdbc.JdbcApplicationTests;
-import com.demo.jdbc.domain.Especialidad;
 import com.demo.jdbc.domain.Materia;
 import com.demo.jdbc.repository.MateriaRepository;
 import java.util.NoSuchElementException;
@@ -29,7 +28,7 @@ public class MateriaServiceTest extends JdbcApplicationTests {
     @Test
     public void guardar_materiaNueva_retornaMateriaGuardada() {
         Materia materia = new Materia();
-        materia.setEspecialidad(Especialidad.K);
+        materia.setEspecialidad("K");
         materia.setCodigo("85-1347");
         materia.setNombre("Algoritmos y Estructura de Datos");
 
@@ -43,7 +42,7 @@ public class MateriaServiceTest extends JdbcApplicationTests {
         String codigoMateria = "85-1347";
 
         Materia materia = new Materia();
-        materia.setEspecialidad(Especialidad.K);
+        materia.setEspecialidad("K");
         materia.setCodigo(codigoMateria);
         materia.setNombre("Algebra y Geometría Analítica");
 
@@ -67,7 +66,7 @@ public class MateriaServiceTest extends JdbcApplicationTests {
     public void eliminarPorCodigo_materiaExiste_retornaMateriaEliminada() {
         String codigoMateria = "85-1347";
         Materia materia = new Materia();
-        materia.setEspecialidad(Especialidad.K);
+        materia.setEspecialidad("K");
         materia.setCodigo(codigoMateria);
         materia.setNombre("Algebra y Geometría Analítica");
 
@@ -90,13 +89,13 @@ public class MateriaServiceTest extends JdbcApplicationTests {
     @Test
     public void buscarTodas_materiasExistentes_retornaTodasLasMaterias() {
         Materia unaMateria = new Materia();
-        unaMateria.setEspecialidad(Especialidad.K);
+        unaMateria.setEspecialidad("K");
         unaMateria.setCodigo("85-1347");
         unaMateria.setNombre("Algoritmos y Estructura de Datos");
         materiaRepository.save(unaMateria);
 
         Materia otraMateria = new Materia();
-        otraMateria.setEspecialidad(Especialidad.K);
+        otraMateria.setEspecialidad("K");
         otraMateria.setCodigo("85-1348");
         otraMateria.setNombre("Física II");
         materiaRepository.save(otraMateria);

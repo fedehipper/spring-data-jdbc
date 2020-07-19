@@ -11,7 +11,7 @@ public class Alumno {
     private Long id;
     private String apellidoYNombre;
     private LocalDate fechaNacimiento;
-    private Regional regional;
+    private String regional;
     @MappedCollection(idColumn = "alumno_id")
     private Set<Curso> cursos;
 
@@ -47,11 +47,11 @@ public class Alumno {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public Regional getRegional() {
+    public String getRegional() {
         return regional;
     }
 
-    public void setRegional(Regional regional) {
+    public void setRegional(String regional) {
         this.regional = regional;
     }
 

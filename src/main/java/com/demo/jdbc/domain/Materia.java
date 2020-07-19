@@ -7,7 +7,7 @@ public class Materia {
     @Id
     private Long id;
     private String nombre;
-    private Especialidad especialidad;
+    private String especialidad;
     private String codigo;
 
     public String getCodigo() {
@@ -34,11 +34,11 @@ public class Materia {
         this.nombre = nombre;
     }
 
-    public Especialidad getEspecialidad() {
+    public String getEspecialidad() {
         return especialidad;
     }
 
-    public void setEspecialidad(Especialidad especialidad) {
+    public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
 
