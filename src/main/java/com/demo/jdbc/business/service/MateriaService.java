@@ -24,9 +24,10 @@ public class MateriaService {
                 .get();
     }
 
-    public Materia eliminar(String codigoMateria) {
+    public Materia eliminarPorCodigo(String codigoMateria) {
         return materiaRepository
-                .deleteByCodigo(codigoMateria);
+                .deleteByCodigo(codigoMateria)
+                .get();
     }
 
 }

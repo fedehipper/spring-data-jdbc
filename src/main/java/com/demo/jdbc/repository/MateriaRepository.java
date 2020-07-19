@@ -8,6 +8,6 @@ public interface MateriaRepository extends CrudRepository<Materia, Long> {
 
     Optional<Materia> findByCodigo(String codigoMateria);
 
-    Materia deleteByCodigo(String codigoMateria);
+    Optional<Materia> deleteByCodigo(String codigoMateria);
     
 }

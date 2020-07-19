@@ -18,12 +18,12 @@ public class MateriaServiceTest extends JdbcApplicationTests {
 
     @Autowired
     private MateriaRepository materiaRepository;
-    
+
     @BeforeEach
     public void setUp() {
         materiaRepository.deleteAll();
     }
-    
+
     @Test
     public void guardar_materiaNueva_retornaMateriaGuardada() {
         Materia materia = new Materia();
@@ -60,21 +60,29 @@ public class MateriaServiceTest extends JdbcApplicationTests {
         assertThatThrownBy(() -> materiaService.buscarPorCodigo(codigoMateriaNoExistente))
                 .isInstanceOf(NoSuchElementException.class);
     }
-    
+
     @Test
-    public void eliminar_materiaExiste_retornaMateriaEliminada() {        
+    public void eliminarPorCodigo_materiaExiste_retornaMateriaEliminada() {
         String codigoMateria = "85-1347";
         Materia materia = new Materia();
         materia.setEspecialidad(Especialidad.K);
         materia.setCodigo(codigoMateria);
         materia.setNombre("Algebra y Geometría Analítica");
-        
+
         materiaRepository.save(materia);
-        
-        Materia materiaEliminada = materiaService.eliminar(codigoMateria);
-        
+
+        Materia materiaEliminada = materiaService.eliminarPorCodigo(codigoMateria);
+
         assertThat(materia).isEqualToComparingFieldByField(materiaEliminada);
 
+    }
+
+    @Test
+    public void eliminarPorCodigo_materiaNoExiste_lanzaExcepcion() {
+        String codigoMateriaNoExistente = "XXX";
+
+        assertThatThrownBy(() -> materiaService.eliminarPorCodigo(codigoMateriaNoExistente))
+                .isInstanceOf(NoSuchElementException.class);
     }
 
 }
