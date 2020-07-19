@@ -5,6 +5,8 @@ import com.demo.jdbc.domain.Especialidad;
 import com.demo.jdbc.domain.Materia;
 import com.demo.jdbc.repository.MateriaRepository;
 import java.util.NoSuchElementException;
+import java.util.Set;
+import static java.util.stream.Collectors.toSet;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.BeforeEach;
@@ -83,6 +85,27 @@ public class MateriaServiceTest extends JdbcApplicationTests {
 
         assertThatThrownBy(() -> materiaService.eliminarPorCodigo(codigoMateriaNoExistente))
                 .isInstanceOf(NoSuchElementException.class);
+    }
+
+    @Test
+    public void buscarTodas_materiasExistentes_retornaTodasLasMaterias() {
+        Materia unaMateria = new Materia();
+        unaMateria.setEspecialidad(Especialidad.K);
+        unaMateria.setCodigo("85-1347");
+        unaMateria.setNombre("Algoritmos y Estructura de Datos");
+        materiaRepository.save(unaMateria);
+
+        Materia otraMateria = new Materia();
+        otraMateria.setEspecialidad(Especialidad.K);
+        otraMateria.setCodigo("85-1348");
+        otraMateria.setNombre("Física II");
+        materiaRepository.save(otraMateria);
+
+        Set<Materia> todasLasMaterias = materiaService.buscarTodas();
+
+        assertThat(todasLasMaterias.stream().map(materia -> materia.getCodigo()).collect(toSet()))
+                .isEqualTo(Set.of(otraMateria.getCodigo(), unaMateria.getCodigo()));
+
     }
 
 }

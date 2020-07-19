@@ -2,6 +2,7 @@ package com.demo.jdbc.business.service;
 
 import com.demo.jdbc.domain.Materia;
 import com.demo.jdbc.repository.MateriaRepository;
+import java.util.Set;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,6 +29,10 @@ public class MateriaService {
         return materiaRepository
                 .deleteByCodigo(codigoMateria)
                 .get();
+    }
+
+    public Set<Materia> buscarTodas() {
+        return materiaRepository.findAll();
     }
 
 }
