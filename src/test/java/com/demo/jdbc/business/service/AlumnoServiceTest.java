@@ -209,4 +209,22 @@ public class AlumnoServiceTest extends JdbcApplicationTests {
 
     }
 
+    @Test
+    public void desInscribirAlumno_alumnoNoExiste_lanzaExcepcion() {
+        Long idAlumnoNoExiste = alumnoRepository.count() + 1;
+
+        Materia materia = new Materia();
+        materia.setEspecialidad("K");
+        materia.setCodigo("85-1347");
+        materia.setNombre("Algoritmos y Estructura de Datos");
+
+        materiaRepository.save(materia);
+
+        String codigoCurso = "K1045";
+
+        assertThatThrownBy(() -> alumnoService.desInscribirAlumno(idAlumnoNoExiste, materia.getCodigo(), codigoCurso))
+                .isInstanceOf(NoSuchElementException.class);
+
+    }
+
 }
