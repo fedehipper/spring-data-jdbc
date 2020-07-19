@@ -41,11 +41,25 @@ public class AlumnoServiceTest extends JdbcApplicationTests {
         alumno.setRegional("Buenos Aires");
 
         Long idAlumnoADarDeBaja = alumnoRepository.save(alumno).getId();
-        
+
         alumnoService.darDeBaja(idAlumnoADarDeBaja);
-        
+
         assertThat(alumnoRepository.count()).isEqualTo(0);
 
+    }
+
+    @Test
+    public void buscarPorId_alumnoExiste_retornaAlumno() {
+        Alumno alumno = new Alumno();
+        alumno.setApellidoYNombre("Hipperdinger Federico");
+        alumno.setFechaNacimiento(LocalDate.of(1992, 2, 28));
+        alumno.setRegional("Buenos Aires");
+        
+        Long alumnoId = alumnoRepository.save(alumno).getId();
+        
+        Alumno alumnoEncontrado = alumnoService.buscarPorId(alumnoId);
+        
+        assertThat(alumnoEncontrado.getId()).isEqualTo(alumnoId);
     }
 
 }

@@ -4,10 +4,10 @@ import com.demo.jdbc.JdbcApplicationTests;
 import com.demo.jdbc.repository.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class InscripcionMateriasServiceTest extends JdbcApplicationTests {
+public class InscripcionServiceTest extends JdbcApplicationTests {
 
     @Autowired
-    private InscripcionMateriasService inscripcionMateriasService;
+    private InscripcionService inscripcionMateriasService;
 
     @Autowired
     private AlumnoRepository alumnoRepository;

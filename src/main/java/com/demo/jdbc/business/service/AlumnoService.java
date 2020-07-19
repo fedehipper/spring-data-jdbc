@@ -21,4 +21,8 @@ public class AlumnoService {
         alumnoRepository.deleteById(alumnoId);
     }
 
+    public Alumno buscarPorId(Long alumnoId) {
+        return alumnoRepository.findById(alumnoId).get();
+    }
+
 }
