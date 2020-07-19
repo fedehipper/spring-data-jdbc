@@ -19,5 +19,6 @@ CREATE TABLE REGISTRATION (
 CREATE TABLE materia (
     id bigserial PRIMARY KEY,
     nombre VARCHAR,
+    codigo VARCHAR,
     especialidad VARCHAR
 );

@@ -17,4 +17,10 @@ public class MateriaService {
         return materiaRepository.save(materia);
     }
 
+    public Materia buscarPorCodigo(String codigoMateria) {
+        return materiaRepository
+                .findByCodigo(codigoMateria)
+                .get();
+    }
+
 }

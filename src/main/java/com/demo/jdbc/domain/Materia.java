@@ -8,6 +8,15 @@ public class Materia {
     private Long id;
     private String nombre;
     private Especialidad especialidad;
+    private String codigo;
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 
     public Long getId() {
         return id;
