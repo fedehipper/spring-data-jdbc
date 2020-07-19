@@ -14,13 +14,19 @@ public class MateriaService {
     }
 
     public Materia guardar(Materia materia) {
-        return materiaRepository.save(materia);
+        return materiaRepository
+                .save(materia);
     }
 
     public Materia buscarPorCodigo(String codigoMateria) {
         return materiaRepository
                 .findByCodigo(codigoMateria)
                 .get();
+    }
+
+    public Materia eliminar(String codigoMateria) {
+        return materiaRepository
+                .deleteByCodigo(codigoMateria);
     }
 
 }
