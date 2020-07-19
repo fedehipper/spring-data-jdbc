@@ -7,6 +7,7 @@ import com.demo.jdbc.repository.MateriaRepository;
 import java.util.NoSuchElementException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +18,11 @@ public class MateriaServiceTest extends JdbcApplicationTests {
 
     @Autowired
     private MateriaRepository materiaRepository;
+    
+    @BeforeEach
+    public void setUp() {
+        materiaRepository.deleteAll();
+    }
     
     @Test
     public void guardar_materiaNueva_retornaMateriaGuardada() {
