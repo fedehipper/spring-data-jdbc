@@ -15,3 +15,9 @@ CREATE TABLE REGISTRATION (
     student_id BIGINT,
     foreign key (student_id) references STUDENT(id)
 );
+
+CREATE TABLE materia (
+    id bigserial PRIMARY KEY,
+    nombre VARCHAR,
+    especialidad VARCHAR
+);
