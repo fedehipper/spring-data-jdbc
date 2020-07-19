@@ -24,13 +24,14 @@ public class AlumnoServiceTest extends JdbcApplicationTests {
 
     @Autowired
     private AlumnoRepository alumnoRepository;
-    
+
     @Autowired
     private MateriaRepository materiaRepository;
 
     @BeforeEach
     public void setUp() {
         alumnoRepository.deleteAll();
+        materiaRepository.deleteAll();
     }
 
     @Test
@@ -133,7 +134,7 @@ public class AlumnoServiceTest extends JdbcApplicationTests {
 
         String codigoCurso = "K1045";
 
-        Alumno alumnoInscripto = alumnoService.inscribirACurso(alumnoId, materiaId, codigoCurso);
+        Alumno alumnoInscripto = alumnoService.inscribirACurso(alumnoId, materia.getCodigo(), codigoCurso);
 
         Curso cursoEsperado = new Curso();
         cursoEsperado.setCodigo(codigoCurso);
@@ -143,5 +144,44 @@ public class AlumnoServiceTest extends JdbcApplicationTests {
         assertThat(alumnoInscripto.getCursos().stream().collect(toList()).get(0)).isEqualToComparingFieldByField(cursoEsperado);
 
     }
+
+    @Test
+    public void inscribirAlumno_alumnoNoExiste_lanzaExcepcion() {
+
+        Long alumnoIdNoExiste = alumnoRepository.count() + 1;
+
+        Materia materia = new Materia();
+        materia.setEspecialidad("K");
+        materia.setCodigo("85-1347");
+        materia.setNombre("Algoritmos y Estructura de Datos");
+
+        materiaRepository.save(materia).getId();
+
+        String codigoCurso = "K1045";
+
+        assertThatThrownBy(() -> alumnoService.inscribirACurso(alumnoIdNoExiste, materia.getCodigo(), codigoCurso))
+                .isInstanceOf(NoSuchElementException.class);
+
+    }
+
+    @Test
+    public void inscribirAlumno_materiaIdNoExiste_lanzaExcepcion() {
+
+        Alumno alumno = new Alumno();
+        alumno.setApellidoYNombre("Hipperdinger Federico");
+        alumno.setFechaNacimiento(LocalDate.of(1992, 2, 28));
+        alumno.setRegional("Buenos Aires");
+
+        Long alumnoId = alumnoRepository.save(alumno).getId();
+
+        String codigoMateriaNoExiste = "XXXX";
+
+        String codigoCurso = "K1045";
+
+        assertThatThrownBy(() -> alumnoService.inscribirACurso(alumnoId, codigoMateriaNoExiste, codigoCurso))
+                .isInstanceOf(NoSuchElementException.class);
+    }
+    
+    
 
 }

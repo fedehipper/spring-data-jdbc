@@ -2,6 +2,7 @@ package com.demo.jdbc.business.service;
 
 import com.demo.jdbc.domain.Alumno;
 import com.demo.jdbc.domain.Curso;
+import com.demo.jdbc.domain.Materia;
 import com.demo.jdbc.repository.AlumnoRepository;
 import java.util.Set;
 import org.springframework.stereotype.Service;
@@ -11,8 +12,11 @@ public class AlumnoService {
 
     private final AlumnoRepository alumnoRepository;
 
-    public AlumnoService(AlumnoRepository alumnoRepository) {
+    private final MateriaService materiaService;
+
+    public AlumnoService(AlumnoRepository alumnoRepository, MateriaService materiaService) {
         this.alumnoRepository = alumnoRepository;
+        this.materiaService = materiaService;
     }
 
     public Alumno darDeAlta(Alumno alumno) {
@@ -34,12 +38,13 @@ public class AlumnoService {
         return alumnoRepository.findAll();
     }
 
-    public Alumno inscribirACurso(long alumnoId, long materiaId, String codigoCurso) {
-        Alumno alumnoAInscribir = agregarCurso(buscarPorId(alumnoId), materiaId, codigoCurso);
-        
+    public Alumno inscribirACurso(long alumnoId, String codigoMateria, String codigoCurso) {
+        Materia materia = materiaService.buscarPorCodigo(codigoMateria);
+        Alumno alumnoAInscribir = agregarCurso(buscarPorId(alumnoId), materia.getId(), codigoCurso);
+
         return alumnoRepository.save(alumnoAInscribir);
     }
-    
+
     private Alumno agregarCurso(Alumno alumno, long materiaId, String codigoCurso) {
         Curso curso = new Curso();
         curso.setCodigo(codigoCurso);
