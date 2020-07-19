@@ -25,7 +25,9 @@ public class AlumnoService {
     }
 
     public Alumno buscarPorId(Long alumnoId) {
-        return alumnoRepository.findById(alumnoId).get();
+        return alumnoRepository
+                .findById(alumnoId)
+                .get();
     }
 
     public Set<Alumno> buscarTodos() {
