@@ -6,7 +6,16 @@ public class Curso {
 
     @Id
     private Long id;
-    private Long alumnoId;
+
+    private Long materiaId;
+
+    public Long getMateriaId() {
+        return materiaId;
+    }
+
+    public void setMateriaId(Long materiaId) {
+        this.materiaId = materiaId;
+    }
 
     public Long getId() {
         return id;
@@ -14,14 +23,6 @@ public class Curso {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getAlumnoId() {
-        return alumnoId;
-    }
-
-    public void setAlumnoId(Long alumnoId) {
-        this.alumnoId = alumnoId;
     }
 
 }
