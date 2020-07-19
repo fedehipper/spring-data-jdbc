@@ -32,17 +32,20 @@ public class AlumnoService {
         return alumnoRepository.findAll();
     }
 
-    public Alumno inscribirACurso(Long alumnoId, Long materiaId, String codigoCurso) {
-        Alumno alumnoAInscribir = buscarPorId(alumnoId);
-
+    public Alumno inscribirACurso(long alumnoId, long materiaId, String codigoCurso) {
+        Alumno alumnoAInscribir = agregarCurso(buscarPorId(alumnoId), materiaId, codigoCurso);
+        
+        return alumnoRepository.save(alumnoAInscribir);
+    }
+    
+    private Alumno agregarCurso(Alumno alumno, long materiaId, String codigoCurso) {
         Curso curso = new Curso();
         curso.setCodigo(codigoCurso);
         curso.setMateriaId(materiaId);
 
-        alumnoAInscribir.getCursos().add(curso);
+        alumno.getCursos().add(curso);
 
-        return alumnoRepository.save(alumnoAInscribir);
-
+        return alumno;
     }
 
 }
