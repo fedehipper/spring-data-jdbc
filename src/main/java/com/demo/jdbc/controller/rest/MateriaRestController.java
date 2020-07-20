@@ -2,7 +2,10 @@ package com.demo.jdbc.controller.rest;
 
 import com.demo.jdbc.business.service.MateriaService;
 import com.demo.jdbc.domain.Materia;
+import java.util.Set;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,9 +25,19 @@ public class MateriaRestController {
         return materiaService.guardar(materia);
     }
     
-    @DeleteMapping("/api/materia")
-    public void eliminar(@RequestParam String codigo) {
+    @DeleteMapping("/api/materia/{codigo}")
+    public void eliminar(@PathVariable String codigo) {
         materiaService.eliminarPorCodigo(codigo);
+    }
+    
+    @GetMapping("/api/materia/{codigo}")
+    public Materia buscarPorCodigo(@PathVariable String codigo) {
+        return materiaService.buscarPorCodigo(codigo);
+    }
+    
+    @GetMapping("/api/materia")
+    public Set<Materia> buscarTodas() {
+        return materiaService.buscarTodas();
     }
 
 }
