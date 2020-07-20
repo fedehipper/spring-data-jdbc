@@ -1,24 +1,24 @@
 CREATE TABLE materia (
-    id BIGSERIAL PRIMARY KEY,
-    nombre VARCHAR,
-    codigo VARCHAR UNIQUE,
-    especialidad VARCHAR
+    "ID" BIGSERIAL PRIMARY KEY,
+    "NOMBRE" VARCHAR,
+    "CODIGO" VARCHAR UNIQUE,
+    "ESPECIALIDAD" VARCHAR
 );
 
 CREATE TABLE alumno(
-    id BIGSERIAL PRIMARY KEY,
-    apellido_y_nombre VARCHAR,
-    fecha_nacimiento DATE,
-    regional VARCHAR
+    "ID" BIGSERIAL PRIMARY KEY,
+    "APELLIDO_Y_NOMBRE" VARCHAR,
+    "FECHA_NACIMIENTO" DATE,
+    "REGIONAL" VARCHAR
 );
 
 CREATE TABLE curso (
-    id BIGSERIAL PRIMARY KEY,
-    codigo VARCHAR,
+    "ID" BIGSERIAL PRIMARY KEY,
+    "CODIGO" VARCHAR,
     "ALUMNO_ID" BIGINT,
-    materia_id BIGINT,
-    FOREIGN KEY (materia_id) REFERENCES materia(id),
-    FOREIGN KEY ("ALUMNO_ID") REFERENCES alumno(id)
+    "MATERIA_ID" BIGINT,
+    FOREIGN KEY ("MATERIA_ID") REFERENCES materia("ID"),
+    FOREIGN KEY ("ALUMNO_ID") REFERENCES alumno("ID")
 );
 
 -- POSTGRES crea por defecto columnas en minúscula, por lo que hay que poner

@@ -1,13 +1,18 @@
 package com.demo.jdbc.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 
 public class Materia {
 
     @Id
+    @Column("ID")
     private Long id;
+    @Column("NOMBRE")
     private String nombre;
+    @Column("ESPECIALIDAD")
     private String especialidad;
+    @Column("CODIGO")
     private String codigo;
 
     public String getCodigo() {
