@@ -15,8 +15,11 @@ CREATE TABLE alumno(
 CREATE TABLE curso (
     id BIGSERIAL PRIMARY KEY,
     codigo VARCHAR,
-    alumno_id BIGINT,
+    "ALUMNO_ID" BIGINT,
     materia_id BIGINT,
     FOREIGN KEY (materia_id) REFERENCES materia(id),
-    FOREIGN KEY (alumno_id) REFERENCES alumno(id)
+    FOREIGN KEY ("ALUMNO_ID") REFERENCES alumno(id)
 );
+
+-- POSTGRES crea por defecto columnas en minúscula, por lo que hay que poner
+-- comillas dobles para que estén en mayusculas.
