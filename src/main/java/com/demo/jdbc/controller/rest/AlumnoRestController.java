@@ -2,6 +2,7 @@ package com.demo.jdbc.controller.rest;
 
 import com.demo.jdbc.business.service.AlumnoService;
 import com.demo.jdbc.domain.Alumno;
+import java.util.Set;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,6 +44,11 @@ public class AlumnoRestController {
     @PutMapping("/api/alumno/{id}/baja")
     public Alumno desInscribirACurso(@PathVariable long id, @RequestParam String codigoMateria, @RequestParam String codigoCurso) {
         return alumnoService.desInscribirAlumno(id, codigoMateria, codigoCurso);
+    }
+    
+    @GetMapping("/api/alumno")
+    public Set<Alumno> buscarTodos() {
+        return alumnoService.buscarTodos();
     }
 
 }
