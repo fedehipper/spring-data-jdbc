@@ -20,6 +20,3 @@ CREATE TABLE curso (
     FOREIGN KEY ("MATERIA_ID") REFERENCES materia("ID"),
     FOREIGN KEY ("ALUMNO_ID") REFERENCES alumno("ID")
 );
-
--- POSTGRES crea por defecto columnas en minúscula, por lo que hay que poner
--- comillas dobles para que estén en mayusculas.
