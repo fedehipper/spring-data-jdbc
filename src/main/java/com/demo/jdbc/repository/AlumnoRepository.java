@@ -8,5 +8,5 @@ public interface AlumnoRepository extends CrudRepository<Alumno, Long> {
     
     @Override
     Set<Alumno> findAll();
-    
+        
 }
