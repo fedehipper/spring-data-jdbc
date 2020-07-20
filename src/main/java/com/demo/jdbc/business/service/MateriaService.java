@@ -23,11 +23,10 @@ public class MateriaService {
                 .findByCodigo(codigoMateria)
                 .get();
     }
-
-    public Materia eliminarPorCodigo(String codigoMateria) {
-        return materiaRepository
-                .deleteByCodigo(codigoMateria)
-                .get();
+    
+    public void eliminarPorCodigo(String codigoMateria) {
+        Materia materiaAEliminar = buscarPorCodigo(codigoMateria);
+        materiaRepository.deleteByCodigo(materiaAEliminar.getCodigo());
     }
 
     public Set<Materia> buscarTodas() {

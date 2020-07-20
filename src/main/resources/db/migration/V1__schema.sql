@@ -1,7 +1,7 @@
 CREATE TABLE materia (
     id BIGSERIAL PRIMARY KEY,
     nombre VARCHAR,
-    codigo VARCHAR,
+    codigo VARCHAR UNIQUE,
     especialidad VARCHAR
 );
 

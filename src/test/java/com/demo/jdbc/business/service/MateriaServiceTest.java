@@ -72,10 +72,9 @@ public class MateriaServiceTest extends JdbcApplicationTests {
 
         materiaRepository.save(materia);
 
-        Materia materiaEliminada = materiaService.eliminarPorCodigo(codigoMateria);
+        materiaService.eliminarPorCodigo(codigoMateria);
 
-        assertThat(materia).isEqualToComparingFieldByField(materiaEliminada);
-
+        assertThat(materiaRepository.count()).isEqualTo(0);
     }
 
     @Test
