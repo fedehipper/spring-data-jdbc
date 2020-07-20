@@ -12,7 +12,7 @@ public class Alumno {
     private String apellidoYNombre;
     private LocalDate fechaNacimiento;
     private String regional;
-    @MappedCollection(idColumn = "ALUMNO_ID")
+    @MappedCollection(idColumn = "alumno_id")
     private Set<Curso> cursos;
 
     public Set<Curso> getCursos() {
