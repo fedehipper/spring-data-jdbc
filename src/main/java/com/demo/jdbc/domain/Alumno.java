@@ -4,20 +4,15 @@ import java.time.LocalDate;
 import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.MappedCollection;
 
 public class Alumno {
 
     @Id
-    @Column("ID")
     private Long id;
-    @Column("APELLIDO_Y_NOMBRE")
     private String apellidoYNombre;
-    @Column("FECHA_NACIMIENTO")
     private LocalDate fechaNacimiento;
-    @Column("REGIONAL")
     private String regional;
-    @MappedCollection(idColumn = "ALUMNO_ID")
+    @Column(value = "alumno_id") // para que funcione en prod poner alumno_id
     private Set<Curso> cursos;
 
     public Set<Curso> getCursos() {

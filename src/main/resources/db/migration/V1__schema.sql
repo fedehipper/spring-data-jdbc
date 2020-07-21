@@ -1,22 +1,22 @@
 CREATE TABLE materia (
-    "ID" BIGSERIAL PRIMARY KEY,
-    "NOMBRE" VARCHAR,
-    "CODIGO" VARCHAR UNIQUE,
-    "ESPECIALIDAD" VARCHAR
+    id BIGSERIAL PRIMARY KEY,
+    nombre VARCHAR,
+    codigo VARCHAR UNIQUE,
+    especialidad VARCHAR
 );
 
 CREATE TABLE alumno(
-    "ID" BIGSERIAL PRIMARY KEY,
-    "APELLIDO_Y_NOMBRE" VARCHAR,
-    "FECHA_NACIMIENTO" DATE,
-    "REGIONAL" VARCHAR
+    id BIGSERIAL PRIMARY KEY,
+    apellido_y_nombre VARCHAR,
+    fecha_nacimiento DATE,
+    regional VARCHAR
 );
 
 CREATE TABLE curso (
-    "ID" BIGSERIAL PRIMARY KEY,
-    "CODIGO" VARCHAR,
-    "ALUMNO_ID" BIGINT,
-    "MATERIA_ID" BIGINT,
-    FOREIGN KEY ("MATERIA_ID") REFERENCES materia("ID"),
-    FOREIGN KEY ("ALUMNO_ID") REFERENCES alumno("ID")
+    id BIGSERIAL PRIMARY KEY,
+    codigo VARCHAR,
+    alumno_id BIGINT,
+    materia_id BIGINT,
+    FOREIGN KEY (materia_id) REFERENCES materia(id),
+    FOREIGN KEY (alumno_id) REFERENCES alumno(id)
 );
