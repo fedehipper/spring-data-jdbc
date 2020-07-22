@@ -12,7 +12,7 @@ public class Alumno {
     private String apellidoYNombre;
     private LocalDate fechaNacimiento;
     private String regional;
-    @Column(value = "alumno_id") // para que funcione en prod poner alumno_id
+    @Column(value = "alumno_id")
     private Set<Curso> cursos;
 
     public Set<Curso> getCursos() {
